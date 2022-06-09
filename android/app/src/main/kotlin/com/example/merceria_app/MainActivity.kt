@@ -1,4 +1,4 @@
-package com.example.merceria_app
+package com.abamerceria.merceria_app
 
 import io.flutter.embedding.android.FlutterActivity
 
