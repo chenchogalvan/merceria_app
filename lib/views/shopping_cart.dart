@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:merceria_app/ui/card-store.dart';
-import 'package:merceria_app/ui/card.dart';
 import 'package:merceria_app/variables.dart';
 
 class ShoppingCart extends StatefulWidget {
