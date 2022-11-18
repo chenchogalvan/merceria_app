@@ -89,14 +89,6 @@ class _SearchPageState extends State<SearchPage> {
                 return ListView.builder(
                   itemCount: producto.length,
                   itemBuilder: (context, index) {
-                    // return CardScan(
-                    //     id: producto[index].id,
-                    //     name: producto[index].name,
-                    //     description: producto[index].description,
-                    //     image: producto[index].image,
-                    //     price: producto[index].price,
-                    //     sku: producto[index].sku,
-                    //     opcion: "0");
                     return CardStore(
                         id: producto[index].id,
                         lista1: producto[index].lista1,
@@ -110,34 +102,6 @@ class _SearchPageState extends State<SearchPage> {
                         empaque: producto[index].empaque,
                         sku: producto[index].sku,
                         opcion: "0");
-                    // return buildCard(
-                    //     producto[index].id,
-                    //     producto[index].name,
-                    //     producto[index].description,
-                    //     producto[index].image.toString(),
-                    //     producto[index].price,
-                    //     producto[index].sku);
-                    // return Container(
-                    //   padding: const EdgeInsets.only(right: 15.0),
-                    //   width: MediaQuery.of(context).size.width - 30.0,
-                    //   height: MediaQuery.of(context).size.height - 50.0,
-                    //   child: GridView.count(
-                    //     crossAxisCount: 2,
-                    //     primary: false,
-                    //     crossAxisSpacing: 10.0,
-                    //     mainAxisSpacing: 15.0,
-                    //     childAspectRatio: 0.8,
-                    //     children: <Widget>[
-                    //       buildSearchCard(
-                    //           producto[index].name,
-                    //           producto[index].price,
-                    //           producto[index].image,
-                    //           false,
-                    //           false,
-                    //           context)
-                    //     ],
-                    //   ),
-                    // );
                   },
                 );
               }

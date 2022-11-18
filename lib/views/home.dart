@@ -5,6 +5,7 @@ import 'package:merceria_app/views/product_check.dart';
 import 'package:merceria_app/views/search.dart';
 import 'package:merceria_app/views/shopping_cart.dart';
 import 'package:merceria_app/views/support.dart';
+import 'package:geolocator/geolocator.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -15,16 +16,55 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int _currentIndex = 0;
+  Position? _position;
+
+  void _getCurrentLocation() async {
+    Position position = await _determinePosition();
+    distanceInMeters >= 23524 ? inNL = "false" : inNL = "true";
+    print(inNL);
+    setState(() {
+      _position = position;
+    });
+  }
+
+  Future<Position> _determinePosition() async {
+    LocationPermission permission;
+
+    permission = await Geolocator.checkPermission();
+
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        return Future.error('Location Permissions are denied');
+      }
+    }
+
+    Position position = await Geolocator.getCurrentPosition();
+
+    distanceInMeters = Geolocator.distanceBetween(
+        position.latitude, position.longitude, 25.6795669, -100.3079035);
+
+    return position;
+  }
+
   final List<Widget> _children = [
     const ProductCheck(),
-    const SearchPage(),
+    // const SearchPage(),
     const ShoppingCart(),
     const SupportPage(),
   ];
 
+  @override
+  void initState() {
+    _getCurrentLocation();
+  }
+
   void onTapperBar(int index) {
     setState(() {
+      _getCurrentLocation();
       _currentIndex = index;
+      distanceInMeters >= 23524 ? inNL = "false" : inNL = "true";
+      print(inNL);
     });
   }
 

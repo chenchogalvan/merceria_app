@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_html/flutter_html.dart';
 import 'package:merceria_app/variables.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
@@ -46,7 +45,10 @@ class _CardStoreState extends State<CardStore> {
         children: <Widget>[
           ListTile(
             contentPadding: EdgeInsets.fromLTRB(15, 10, 25, 0),
-            title: Text("SKU: ${widget.sku} | Precio: ${widget.lista2}"),
+            title: inNL == "true"
+                ? Text(
+                    "SKU: ${widget.sku} \nPrecio: ${widget.lista2} \nPrecio Mayoreo: ${widget.lista1} ")
+                : Text("SKU: ${widget.sku} \nPrecio: ${widget.lista3}"),
             subtitle:
                 Text('Producto: \n${widget.desc} \nColor: \n${widget.colores}'),
             leading: const Icon(
@@ -87,8 +89,11 @@ class _CardStoreState extends State<CardStore> {
                               productsLength = productosDatos.length.toString();
 
                               //sumamos
-                              totalProductos += double.parse(widget.lista2);
+                              inNL == "true"
+                                  ? precioCarrito = double.parse(widget.lista2)
+                                  : precioCarrito = double.parse(widget.lista3);
                               // debugPrint(totalProductos.toString());
+                              totalProductos += precioCarrito;
                             });
 
                             //Sumamos y guardamos en variable global
